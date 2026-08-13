@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="20" viewBox="0 0 320 20">
     <g font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="14" font-weight="bold">
-        <text x="0" y="15" fill="#2ea043">++ 397.4k Added</text>
+        <text x="0" y="15" fill="#2ea043">++ 400.6k Added</text>
         <text x="150" y="15" fill="#58A6FF">|</text>
         <text x="165" y="15" fill="#f85149">-- 184.4k Deleted</text>
     </g>
