@@ -1,0 +1,202 @@
+/* ============================================
+   Student Legacy (About & Skills) Section Styles
+   ============================================ */
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.about-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.about-avatar-container {
+  position: relative;
+  width: clamp(150px, 18vw, 200px);
+  height: clamp(150px, 18vw, 200px);
+}
+
+.about-avatar-ring {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 240, 255, 0.15);
+  animation: profileRingSpin 10s linear infinite;
+  transform-origin: center;
+}
+
+.about-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(0, 136, 255, 0.05));
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-avatar-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #00f0ff, #0088ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.text-gradient {
+  background: var(--color-accent-gradient, linear-gradient(135deg, #00f0ff, #0088ff));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ── SKILLS ── */
+.skills-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.skills-tab {
+  padding: 0.5rem 1.25rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(224, 224, 255, 0.5);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.skills-tab.active {
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.08);
+  border-color: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.skills-tab:hover:not(.active) {
+  color: rgba(224, 224, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 1rem;
+}
+
+.skill-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.skill-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e0e0ff;
+}
+
+.skill-level {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #00f0ff;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00f0ff, #0088ff);
+  border-radius: 999px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+.skill-orb {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  opacity: 0.1;
+}
+
+.skill-orb-inner {
+  border-radius: 50%;
+  background: radial-gradient(circle, #00f0ff, transparent);
+  filter: blur(8px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+}

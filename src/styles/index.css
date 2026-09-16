@@ -1,0 +1,351 @@
+/* ============================================
+   GOWTHAM KONDAPALLI — 3D PORTFOLIO
+   Design System & Global Styles
+   ============================================ */
+
+/* ---------- Google Fonts loaded in index.html for non-blocking render ---------- */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Base Colors */
+  --color-bg-primary: #050510;
+  --color-bg-secondary: #0a0a1a;
+  --color-bg-tertiary: #0f0f2a;
+  --color-bg-card: rgba(15, 15, 42, 0.6);
+  
+  /* Student Accent (Cyan / Blue) */
+  --color-student-primary: #00f0ff;
+  --color-student-secondary: #0088ff;
+  --color-student-glow: rgba(0, 240, 255, 0.4);
+  --color-student-gradient: linear-gradient(135deg, #00f0ff, #0088ff);
+  
+  /* Entrepreneur Accent (Gold / Amber) */
+  --color-entrepreneur-primary: #ffb800;
+  --color-entrepreneur-secondary: #ff6b00;
+  --color-entrepreneur-glow: rgba(255, 184, 0, 0.4);
+  --color-entrepreneur-gradient: linear-gradient(135deg, #ffb800, #ff6b00);
+  
+  /* Dynamic accent — set by JS based on selected role */
+  --color-accent-primary: #00f0ff;
+  --color-accent-secondary: #0088ff;
+  --color-accent-glow: rgba(0, 240, 255, 0.4);
+  --color-accent-gradient: linear-gradient(135deg, #00f0ff, #0088ff);
+  
+  /* Text Colors */
+  --color-text-primary: #e8e8ff;
+  --color-text-secondary: #a0a0cc;
+  --color-text-muted: #6060a0;
+  --color-text-heading: #ffffff;
+  
+  /* Typography */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Font Sizes (fluid) */
+  --text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);
+  --text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem);
+  --text-base: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
+  --text-lg: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --text-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --text-4xl: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
+  --text-5xl: clamp(3rem, 2rem + 5vw, 7rem);
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5rem;
+  --space-4xl: 8rem;
+  --section-gap: clamp(3.5rem, 5.5vw, 5rem);
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+  
+  /* Glass Properties */
+  --glass-bg: rgba(15, 15, 42, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 20px;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Z-Index Scale */
+  --z-canvas: 0;
+  --z-content: 10;
+  --z-overlay: 50;
+  --z-navbar: 100;
+  --z-modal: 200;
+  --z-loading: 500;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--text-4xl); font-weight: 700; }
+h2 { font-size: var(--text-3xl); font-weight: 600; }
+h3 { font-size: var(--text-2xl); font-weight: 600; }
+h4 { font-size: var(--text-xl); font-weight: 500; }
+
+p {
+  color: var(--color-text-secondary);
+  max-width: 65ch;
+}
+
+a {
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent-secondary);
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: var(--color-accent-primary);
+  color: var(--color-bg-primary);
+}
+
+/* ---------- Scrollbar (Completely Hidden) ---------- */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and legacy Edge */
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* ---------- Glassmorphism Utilities ---------- */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}
+
+.glass-strong {
+  background: rgba(15, 15, 42, 0.7);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+}
+
+.glass-subtle {
+  background: rgba(15, 15, 42, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Glow Text ---------- */
+.glow-text {
+  text-shadow:
+    0 0 10px var(--color-accent-glow),
+    0 0 30px var(--color-accent-glow),
+    0 0 60px var(--color-accent-glow);
+}
+
+.glow-text-student {
+  color: var(--color-student-primary);
+  text-shadow:
+    0 0 10px var(--color-student-glow),
+    0 0 30px var(--color-student-glow),
+    0 0 60px var(--color-student-glow);
+}
+
+.glow-text-entrepreneur {
+  color: var(--color-entrepreneur-primary);
+  text-shadow:
+    0 0 10px var(--color-entrepreneur-glow),
+    0 0 30px var(--color-entrepreneur-glow),
+    0 0 60px var(--color-entrepreneur-glow);
+}
+
+/* ---------- Glow Box ---------- */
+.glow-box {
+  box-shadow:
+    0 0 15px var(--color-accent-glow),
+    0 0 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.glow-box-student {
+  box-shadow:
+    0 0 15px var(--color-student-glow),
+    0 0 30px rgba(0, 240, 255, 0.1);
+}
+
+.glow-box-entrepreneur {
+  box-shadow:
+    0 0 15px var(--color-entrepreneur-glow),
+    0 0 30px rgba(255, 184, 0, 0.1);
+}
+
+/* ---------- Button Styles ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--color-accent-gradient);
+  color: var(--color-bg-primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--color-accent-glow);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--glass-border);
+}
+
+.btn-ghost:hover {
+  background: var(--glass-bg);
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+}
+
+/* ---------- Section Layout ---------- */
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2rem);
+  z-index: var(--z-content);
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ---------- Canvas Container ---------- */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-canvas);
+  pointer-events: none;
+}
+
+.canvas-container.interactive {
+  pointer-events: auto;
+}
+
+/* ---------- Utility Classes ---------- */
+.text-center { text-align: center; }
+.text-gradient {
+  background: var(--color-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-2xl) var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-xl) var(--space-sm);
+  }
+
+  h1 { font-size: var(--text-3xl); }
+  h2 { font-size: var(--text-2xl); }
+  h3 { font-size: var(--text-xl); }
+}

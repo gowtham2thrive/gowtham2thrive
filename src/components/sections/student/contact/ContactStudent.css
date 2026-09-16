@@ -1,0 +1,211 @@
+/* ============================================
+   Student Contact Section Styles
+   ============================================ */
+
+/* ── CONTACT ── */
+.contact-section {
+  padding-bottom: clamp(4rem, 6vw, 6rem);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.contact-details {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  color: rgba(224, 224, 255, 0.6);
+  word-break: break-word;
+}
+
+.contact-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.contact-socials {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-social-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 1rem;
+  color: rgba(224, 224, 255, 0.5);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.contact-social-btn:hover {
+  background: rgba(0, 240, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.2);
+  color: #00f0ff;
+  transform: translateY(-2px);
+}
+
+.contact-form {
+  padding: clamp(1.25rem, 2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(224, 224, 255, 0.5);
+  letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #e0e0ff;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  resize: vertical;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+  background: rgba(0, 240, 255, 0.02);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(224, 224, 255, 0.2);
+}
+
+.contact-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 0.85rem;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.contact-submit.submitted {
+  background: linear-gradient(135deg, #00ff88, #00cc66) !important;
+  border-color: #00ff88 !important;
+  color: #050510 !important;
+  font-weight: 600;
+}
+
+.contact-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.contact-submit.error {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a) !important;
+  border-color: #ff4d6d !important;
+  color: #ffffff !important;
+}
+
+.contact-success-msg {
+  font-size: 0.84rem;
+  color: #00ff88;
+  text-align: center;
+  margin-top: 0.75rem;
+  line-height: 1.4;
+}
+
+.contact-error-msg {
+  font-size: 0.84rem;
+  color: #ff6b8b;
+  text-align: center;
+  margin-top: 0.75rem;
+  line-height: 1.4;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px;
+    /* Prevents unwanted iOS Safari zooming */
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-socials {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    width: 100%;
+  }
+
+  .contact-social-btn {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-submit {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 1.15rem 0.95rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .contact-socials {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.45rem;
+  }
+
+  .contact-social-btn {
+    height: 40px;
+  }
+}

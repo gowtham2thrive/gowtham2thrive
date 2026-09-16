@@ -1,0 +1,573 @@
+/* ============================================
+   Role Selection Page Styles — Premium Cosmic
+   ============================================ */
+
+/* Ensure no browser scrollbar appears on the role selection landing page */
+html:has(.role-selection),
+body:has(.role-selection) {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
+.role-selection {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  width: 100vw;
+  height: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background: #030010;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.role-selection.entrance-fade {
+  animation: roleSelectionFadeIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity;
+}
+
+@keyframes roleSelectionFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Hyperspace Arrival Veil: dissipates outward as user lands in Gateway ── */
+.switch-arrival-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 1;
+  animation: switchArrivalDissolve 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: opacity;
+  overflow: hidden;
+}
+
+/* Horizontal anamorphic flare fading out into deep space */
+.switch-arrival-overlay::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 15%,
+    var(--color-accent-primary, #00f0ff) 50%,
+    rgba(255, 255, 255, 0.1) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 20px 2px var(--color-accent-glow, rgba(0, 240, 255, 0.45));
+  transform: translateY(-50%) scaleX(1);
+  animation: switchAnamorphicFade 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.switch-arrival-overlay.student {
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 240, 255, 0.12) 0%,
+    rgba(3, 0, 16, 0.85) 60%,
+    #030010 100%
+  );
+}
+
+.switch-arrival-overlay.entrepreneur {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 184, 0, 0.12) 0%,
+    rgba(3, 0, 16, 0.85) 60%,
+    #030010 100%
+  );
+}
+
+/* Soft Iris Ring expanding to infinity */
+.switch-arrival-overlay::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140vmax;
+  height: 140vmax;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 40px var(--color-accent-glow, rgba(0, 240, 255, 0.35));
+  transform: translate(-50%, -50%) scale(0.65);
+  animation: switchArrivalRingExpand 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes switchAnamorphicFade {
+  0% {
+    transform: translateY(-50%) scaleX(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50%) scaleX(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes switchArrivalDissolve {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes switchArrivalRingExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.65);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.35);
+    opacity: 0;
+  }
+}
+
+/* Deep space cosmic gradient background — dual split */
+.role-selection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 50%, rgba(0, 180, 255, 0.14) 0%, rgba(0, 80, 200, 0.05) 50%, transparent 75%),
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(255, 170, 0, 0.13) 0%, rgba(200, 80, 0, 0.04) 50%, transparent 75%),
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(40, 15, 90, 0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(3, 0, 16, 0.6) 0%, transparent 100%),
+    #030010;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+
+.role-selection.transitioning {
+  pointer-events: none;
+}
+
+/* Canvas */
+.role-selection-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.role-selection-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* HTML Overlay */
+.role-selection-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1rem, 3vw, 2rem);
+  box-sizing: border-box;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.role-selection-overlay.fade-out {
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Header */
+.role-selection-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  animation: rolesFadeInDown 1s ease 0.3s both;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.role-selection-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(20, 20, 45, 0.75) 0%, rgba(8, 8, 22, 0.6) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 0 16px -2px rgba(0, 240, 255, 0.3),
+              0 0 24px -2px rgba(255, 184, 0, 0.2),
+              inset 0 0 12px rgba(255, 255, 255, 0.04);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.role-selection-logo-wrap:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 26px rgba(0, 240, 255, 0.5),
+              0 0 38px rgba(255, 184, 0, 0.4),
+              inset 0 0 16px rgba(255, 255, 255, 0.08);
+}
+
+.role-selection-logo {
+  width: 36px;
+  height: 36px;
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.4))
+         drop-shadow(0 0 10px rgba(255, 184, 0, 0.3));
+}
+
+.role-selection-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.role-selection-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #00f0ff, #0088ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.05em;
+}
+
+.role-selection-brand-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.65rem, 1vw, 0.75rem);
+  font-weight: 400;
+  color: rgba(224, 224, 255, 0.45);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Center Heading */
+.role-selection-center {
+  text-align: center;
+  animation: rolesFadeIn 1.2s ease 0.5s both;
+  position: absolute;
+  top: clamp(1.2rem, 4vh, 2.5rem);
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.role-selection.entrance-fade .role-selection-center {
+  animation: roleSelectionTitleReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes roleSelectionTitleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.role-selection-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.15rem, 2.4vw, 2.1rem);
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-shadow:
+    0 0 24px rgba(255, 255, 255, 0.12),
+    0 0 50px rgba(100, 140, 255, 0.1),
+    0 0 80px rgba(80, 120, 255, 0.05);
+  line-height: 1.3;
+  background: linear-gradient(180deg, #ffffff 25%, #c0cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  max-width: 850px;
+  text-align: center;
+}
+
+
+
+/* Warp chromatic burst overlay */
+.warp-burst-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  animation: warpEnergyBurst 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.warp-burst-overlay.warp-student {
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 232, 255, 0.95) 0%,
+    rgba(0, 100, 220, 0.8) 25%,
+    rgba(0, 40, 120, 0.6) 45%,
+    rgba(2, 4, 20, 0.95) 70%,
+    #030010 100%
+  );
+  box-shadow: inset 0 0 160px rgba(0, 180, 255, 0.5);
+}
+
+.warp-burst-overlay.warp-entrepreneur {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 240, 180, 0.95) 0%,
+    rgba(255, 160, 0, 0.85) 25%,
+    rgba(200, 60, 0, 0.6) 45%,
+    rgba(15, 5, 20, 0.95) 70%,
+    #030010 100%
+  );
+  box-shadow: inset 0 0 160px rgba(255, 186, 0, 0.5);
+}
+
+@keyframes warpEnergyBurst {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: blur(24px);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0.8);
+    filter: blur(16px);
+  }
+  80% {
+    opacity: 0.95;
+    transform: scale(1.06);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Animations */
+@keyframes rolesFadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rolesFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rolesFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rolesFloat {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
+}
+
+/* ── Responsive Adjustments ── */
+@media (max-width: 768px) {
+  .role-selection-brand-name {
+    display: none;
+  }
+
+  .role-selection::before {
+    background:
+      /* Top cyan glow for Student portal */
+      radial-gradient(ellipse 90% 45% at 50% 25%, rgba(0, 180, 255, 0.16) 0%, transparent 70%),
+      /* Bottom amber glow for Entrepreneur portal */
+      radial-gradient(ellipse 90% 45% at 50% 75%, rgba(255, 170, 0, 0.15) 0%, transparent 70%),
+      /* Deep space apex */
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(40, 15, 90, 0.25) 0%, transparent 70%),
+      #030010;
+  }
+}
+
+/* ── Fallback Interface for Devices Without WebGL ── */
+.role-selection-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 10;
+  text-align: center;
+}
+
+.fallback-header {
+  margin-bottom: 2.5rem;
+}
+
+.fallback-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(180deg, #ffffff 30%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fallback-subtitle {
+  color: rgba(226, 232, 240, 0.7);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.fallback-cards {
+  display: flex;
+  gap: 2rem;
+  max-width: 800px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.fallback-card {
+  flex: 1 1 280px;
+  max-width: 360px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+}
+
+.fallback-card:hover {
+  transform: translateY(-6px);
+}
+
+.fallback-card.student-card:hover {
+  border-color: #00f0ff;
+  box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.4);
+}
+
+.fallback-card.entrepreneur-card:hover {
+  border-color: #ffb800;
+  box-shadow: 0 10px 30px -10px rgba(255, 184, 0, 0.4);
+}
+
+.fallback-card .card-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.fallback-card.student-card .card-badge {
+  background: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+}
+
+.fallback-card.entrepreneur-card .card-badge {
+  background: rgba(255, 184, 0, 0.15);
+  color: #ffb800;
+}
+
+.fallback-card h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.05em;
+}
+
+.fallback-card.student-card h2 {
+  color: #00f0ff;
+}
+
+.fallback-card.entrepreneur-card h2 {
+  color: #ffb800;
+}
+
+.fallback-card p {
+  color: rgba(226, 232, 240, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+  flex: 1;
+}
+
+.fallback-card .card-action {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.fallback-card.student-card .card-action {
+  color: #00f0ff;
+}
+
+.fallback-card.entrepreneur-card .card-action {
+  color: #ffb800;
+}
+
+

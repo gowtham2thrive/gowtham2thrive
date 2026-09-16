@@ -1,0 +1,32 @@
+/* ============================================
+   Scroll Progress Bar
+   ============================================ */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 200;
+  background: transparent;
+}
+
+.scroll-progress-bar {
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+  border-radius: 0 2px 2px 0;
+}
+
+.scroll-progress-bar.student {
+  background: linear-gradient(90deg, #00f0ff, #0088ff);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.scroll-progress-bar.entrepreneur {
+  background: linear-gradient(90deg, #ffb800, #ff6b00);
+  box-shadow: 0 0 10px rgba(255, 184, 0, 0.5), 0 0 20px rgba(255, 184, 0, 0.2);
+}

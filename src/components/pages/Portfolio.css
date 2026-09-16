@@ -1,0 +1,346 @@
+/* ============================================
+   Shared Portfolio Page Styles
+   ============================================ */
+
+.portfolio {
+  position: relative;
+  min-height: 100vh;
+  background: #050510;
+}
+
+.portfolio.entrepreneur-portfolio {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Hyperspace Arrival Deceleration Reveal */
+.portfolio.entrance-hyperspace {
+  animation: portfolioHyperspaceEntrance 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes portfolioHyperspaceEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(1.025);
+    filter: brightness(1.4);
+  }
+  50% {
+    filter: brightness(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Smooth content fade on exit without affecting fixed overlay */
+.portfolio-main,
+.navbar,
+.scroll-progress,
+.back-to-top-btn,
+.footer {
+  transition: opacity 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.portfolio.switching-out .portfolio-main,
+.portfolio.switching-out .navbar,
+.portfolio.switching-out .scroll-progress,
+.portfolio.switching-out .back-to-top-btn,
+.portfolio.switching-out .footer {
+  opacity: 0;
+  transform: translate3d(0, 0, 0) scale(0.985);
+  will-change: opacity, transform;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  pointer-events: none;
+}
+
+/* ── Outcoming Switch Path Transition Overlay (100% GPU-accelerated, Zero Blur Lag) ── */
+.switch-exit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateZ(0);
+  will-change: opacity;
+  animation: switchPathExitFade 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  overflow: hidden;
+}
+
+/* Cinematic Anamorphic Horizontal Light Flare (100% GPU transform) */
+.switch-exit-overlay::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 15%,
+    var(--color-accent-primary, #00f0ff) 50%,
+    rgba(255, 255, 255, 0.15) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 24px 2px var(--color-accent-glow, rgba(0, 240, 255, 0.6)),
+              0 0 48px 6px var(--color-accent-primary, #00f0ff);
+  transform: translateY(-50%) scaleX(0.06);
+  animation: switchAnamorphicSweep 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Soft Volumetric Iris Bloom Ring */
+.switch-exit-overlay::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140vmax;
+  height: 140vmax;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 60px 4px var(--color-accent-glow, rgba(0, 240, 255, 0.5)),
+              inset 0 0 60px 4px var(--color-accent-glow, rgba(0, 240, 255, 0.3));
+  transform: translate(-50%, -50%) scale(0.08);
+  animation: switchIrisBloom 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.switch-exit-overlay.student {
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 240, 255, 0.2) 0%,
+    rgba(0, 70, 160, 0.65) 45%,
+    rgba(3, 0, 16, 0.98) 80%,
+    #030010 100%
+  );
+  box-shadow: inset 0 0 100px rgba(0, 240, 255, 0.25);
+}
+
+.switch-exit-overlay.entrepreneur {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 184, 0, 0.2) 0%,
+    rgba(200, 80, 0, 0.65) 45%,
+    rgba(3, 0, 16, 0.98) 80%,
+    #030010 100%
+  );
+  box-shadow: inset 0 0 100px rgba(255, 184, 0, 0.25);
+}
+
+@keyframes switchPathExitFade {
+  0% {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes switchAnamorphicSweep {
+  0% {
+    transform: translateY(-50%) scaleX(0.06);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50%) scaleX(1.05);
+    opacity: 0.2;
+  }
+}
+
+@keyframes switchIrisBloom {
+  0% {
+    transform: translate(-50%, -50%) scale(0.08);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.18);
+    opacity: 0;
+  }
+}
+
+.portfolio-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.portfolio-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Section base styles ── */
+.portfolio-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: calc(var(--section-gap, clamp(3.5rem, 5.5vw, 5rem)) / 2);
+  padding-bottom: calc(var(--section-gap, clamp(3.5rem, 5.5vw, 5rem)) / 2);
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+  box-sizing: border-box;
+}
+
+.portfolio-section-inner {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Section headings */
+.section-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary, #00f0ff);
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.section-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.section-description {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  color: rgba(224, 224, 255, 0.5);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ── Glass cards ── */
+.portfolio-card {
+  background: rgba(15, 15, 42, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-card:hover {
+  background: rgba(15, 15, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Stat cards ── */
+.stat-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.stat-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: var(--color-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(224, 224, 255, 0.4);
+  letter-spacing: 0.05em;
+}
+
+/* ── Tags ── */
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--color-accent-primary, #00f0ff);
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+.entrepreneur-portfolio .tag {
+  color: var(--color-entrepreneur-primary, #ffb800);
+  background: rgba(255, 184, 0, 0.05);
+  border-color: rgba(255, 184, 0, 0.15);
+}
+
+/* ── Scroll reveal ── */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .portfolio-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .section-heading {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .portfolio-card {
+    padding: 1.15rem 0.95rem;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .portfolio-section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .portfolio-card {
+    padding: 1rem 0.8rem;
+  }
+}

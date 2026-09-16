@@ -1,0 +1,11 @@
+/* ============================================
+   Student Sections Styles (Modular Aggregator)
+   ============================================ */
+
+@import './hero/HeroStudent.css';
+@import './projects/ProjectsStudent.css';
+@import './experience/ExperienceStudent.css';
+@import './education/EducationStudent.css';
+@import './events/EventsStudent.css';
+@import './contact/ContactStudent.css';
+@import './AboutSkillsLegacy.css';
