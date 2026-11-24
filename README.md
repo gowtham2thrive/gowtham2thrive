@@ -18,7 +18,7 @@ I'm a builder who refuses to stay in one lane. I write code, publish research, a
 
 ## 🗺️ The Journey
 
-> *Each milestone isn't just a date — it's a turning point.*
+> *Each milestone isn't just a date — it's a turning point*
 
 ---
 
